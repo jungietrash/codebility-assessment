@@ -19,9 +19,6 @@ export default function TodoItem({ todo }: { todo: todos }) {
   const { status } = useSession();
 
   const isAuthenticated = status === "authenticated";
-
-  // FIX: Action logic should only be fully 'disabled' if loading or logged out.
-  // We keep 'isEditing' separate so the Save/Cancel buttons stay visible.
   const isLocked = !isAuthenticated;
   const isWorking = isPending;
 
@@ -65,6 +62,7 @@ export default function TodoItem({ todo }: { todo: todos }) {
       ${isLocked ? "opacity-75 bg-gray-50/50" : "opacity-100"}
     `}
     >
+      <p className="hidden">{status}</p>
       <div className="flex items-center gap-5 flex-1">
         {/* Checkbox Button */}
         <button
@@ -114,11 +112,11 @@ export default function TodoItem({ todo }: { todo: todos }) {
         )}
       </div>
 
-      {/* Actions Area - Only hide if user is LOGGED OUT */}
+      {/* Actions Area - FIXED LOGIC BELOW */}
       <div
         className={`flex gap-1 transition-opacity duration-200 ${
           isEditing ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-        } ${isLocked ? "hidden" : ""}`}
+        } ${isLocked ? "hidden" : "flex"}`}
       >
         {isEditing ? (
           <>
@@ -127,7 +125,11 @@ export default function TodoItem({ todo }: { todo: todos }) {
               disabled={isWorking}
               className="p-2 text-orange-600 hover:bg-orange-50 rounded-lg"
             >
-              <Check size={18} strokeWidth={3} />
+              {isWorking ? (
+                <Loader2 size={18} className="animate-spin" />
+              ) : (
+                <Check size={18} strokeWidth={3} />
+              )}
             </button>
             <button
               onClick={() => {
