@@ -5,15 +5,14 @@ import TodoClient from "./_components/TodoClient";
 import { Utensils, Zap } from "lucide-react";
 
 export default async function TodosPage() {
-  // Fetching orders/steps
   const todosPromise = prisma.todos.findMany({
+    take: 20,
     orderBy: { updated_at: "desc" }, // Show newest orders at the top
   });
 
   return (
     <main className="min-h-screen bg-[#FBFBFB] text-[#202124] selection:bg-orange-100">
-      <div className="max-w-2xl mx-auto pt-32 pb-20 px-6">
-        {/* Culinary Header */}
+      <div className="max-w-2xl mx-auto pt-32 px-6">
         <header className="mb-12 flex items-end justify-between">
           <div>
             <div className="flex items-center gap-2 mb-3">
@@ -73,13 +72,6 @@ export default async function TodosPage() {
         >
           <TodoClient todosPromise={todosPromise} />
         </Suspense>
-
-        {/* Footer info */}
-        <footer className="mt-20 pt-8 border-t border-gray-100 text-center">
-          <p className="text-[10px] font-bold text-gray-300 uppercase tracking-widest">
-            Codebility Assessment • Fullstack 3.5
-          </p>
-        </footer>
       </div>
     </main>
   );
