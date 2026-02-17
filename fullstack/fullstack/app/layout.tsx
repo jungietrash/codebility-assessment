@@ -13,15 +13,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vivid Task | Personal Productivity",
+  title: "Kitchen Assistant | Live Cooking Orders",
   description:
-    "A high-performance, gradient-driven todo experience designed for clarity and focus.",
-  keywords: ["productivity", "todo", "nextjs", "dashboard"],
+    "Real-time kitchen display system designed for prep and order management.",
+  keywords: [
+    "kitchen assistant",
+    "cooking orders",
+    "KDS",
+    "productivity",
+    "nextjs",
+  ],
   authors: [{ name: "Your Name" }],
   openGraph: {
-    title: "Vivid Task",
-    description: "Master your day with vibrant focus.",
-    type: "website",
+    title: "Kitchen Assistant",
+    description: "Kitchen prep with live order tracking.",
+  },
+  twitter: {
+    title: "Kitchen Assistant",
+    description: "Master your kitchen prep with vibrant, real-time focus.",
   },
 };
 
