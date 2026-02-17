@@ -35,13 +35,6 @@ export default async function TodosPage() {
                 Kitchen Live
               </span>
             </div>
-            <span className="text-xs text-gray-400 font-medium">
-              {new Date().toLocaleDateString("en-US", {
-                weekday: "long",
-                month: "short",
-                day: "numeric",
-              })}
-            </span>
           </div>
         </header>
 
