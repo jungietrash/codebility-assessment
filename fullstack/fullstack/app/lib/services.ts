@@ -1,5 +1,6 @@
 import { todos as ITodos } from "@prisma/client";
 import axios from "axios";
+import { prisma } from "./prisma";
 
 interface ApiResponse<T> {
   success: boolean;
@@ -39,3 +40,17 @@ export const updateTodoTask = async (
   const res = await axios.patch(`/api/todos/${id}`, { task });
   return res.data;
 };
+
+export async function createCookingOrder(dishName: string) {
+  try {
+    const res = await axios.post("/api/cooking", { dishName });
+
+    return { success: true, data: res.data };
+  } catch (error) {
+    console.error("Cooking API Error:");
+    return {
+      success: false,
+      error: "Chef is busy, try again!",
+    };
+  }
+}
