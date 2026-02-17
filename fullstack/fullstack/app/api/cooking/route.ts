@@ -18,7 +18,6 @@ export async function POST(req: Request) {
       );
     }
 
-    // 1. Fetch AI steps from Groq
     const completion = await groq.chat.completions.create({
       model: "llama-3.3-70b-versatile",
       messages: [
@@ -38,8 +37,6 @@ export async function POST(req: Request) {
     const parsed = JSON.parse(responseContent || '{"steps": []}');
     const steps = parsed.steps || [];
 
-    // 2. Save to Database
-    // Note: Use createMany if your DB provider supports it, otherwise map over creates
     const savedSteps = await Promise.all(
       steps.map((step: string) =>
         prisma.todos.create({

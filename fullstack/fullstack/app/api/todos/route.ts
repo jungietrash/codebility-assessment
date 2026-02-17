@@ -17,7 +17,7 @@ export async function GET() {
     }
 
     const todos = await prisma.todos.findMany({
-      where: { user_id: session.user.id }, // Filter by the logged-in user
+      where: { user_id: session.user.id },
       orderBy: { updated_at: "desc" },
     });
 
@@ -57,7 +57,7 @@ export async function POST(req: Request) {
       data: {
         task,
         is_completed: false,
-        user_id: session.user.id, // Inject real UUID from session
+        user_id: session.user.id,
       },
     });
 
