@@ -64,7 +64,6 @@ export default function TodoItem({ todo }: { todo: todos }) {
     >
       <p className="hidden">{status}</p>
       <div className="flex items-center gap-5 flex-1">
-        {/* Checkbox Button */}
         <button
           disabled={isLocked || isWorking || isEditing}
           onClick={handleToggle}
@@ -83,7 +82,6 @@ export default function TodoItem({ todo }: { todo: todos }) {
           ) : null}
         </button>
 
-        {/* Content Area */}
         {isEditing ? (
           <input
             ref={inputRef}
@@ -112,7 +110,6 @@ export default function TodoItem({ todo }: { todo: todos }) {
         )}
       </div>
 
-      {/* Actions Area - FIXED LOGIC BELOW */}
       <div
         className={`flex gap-1 transition-opacity duration-200 ${
           isEditing ? "opacity-100" : "opacity-0 group-hover:opacity-100"
