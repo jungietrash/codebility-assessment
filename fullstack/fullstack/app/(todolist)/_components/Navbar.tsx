@@ -13,7 +13,7 @@ export default function Navbar() {
             width={28}
             height={28}
             priority
-            className="object-contain"
+            className="object-contain rounded-lg"
           />
         </div>
       </Link>
